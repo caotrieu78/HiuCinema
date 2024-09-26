@@ -1,0 +1,126 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/* Hiển thị menu popup trên màn hình có độ rộng nhỏ hơn hoặc bằng 768px */
+#notification-container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.alert.alert-success {
+    background-color: #d4edda !important; /* Màu nền xanh lá cây nhạt */
+    border: 2px solid ; /* Màu viền */
+    color: #155724 !important; /* Màu văn bản */
+    padding: 1rem !important; /* Khoảng cách bên trong */
+    border-radius: 0.25rem !important; /* Độ cong viền */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+#popupMenuToggle {
+    cursor: pointer;
+}
+
+.popup-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+    .popup-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .popup-menu ul li {
+            padding: 8px 0;
+        }
+
+            .popup-menu ul li a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                padding: 8px 16px;
+            }
+
+                .popup-menu ul li a:hover {
+                    background-color: #ddd;
+                }
+
+    .popup-menu .close-btn {
+        position: absolute;
+        top: -8px;
+        right: 5px;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+.navbar-link {
+    position: relative;
+}
+
+
+    .navbar-link::after {
+        content: '';
+        position: absolute;
+        bottom: 15px; /* Khoảng cách từ dưới của liên kết */
+        left: 0;
+        width: 0;
+        height: 3px; /* Chiều cao của thanh line */
+        background-color: red;
+        transition: width 0.3s ease; /* Hiệu ứng khi thay đổi kích thước */
+    }
+
+    .navbar-link:hover::after {
+        transition: 0.3s;
+        width: 100%; /* Chiều rộng của thanh line khi hover */
+    }
+
+@media only screen and (max-width: 985px) {
+    .navbar-link::after {
+        display: none; /* Ẩn thanh line trên thiết bị di động */
+    }

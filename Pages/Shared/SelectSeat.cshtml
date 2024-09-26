@@ -1,0 +1,124 @@
+﻿@page
+@model BookingCinema.Pages.Shared.SelectSeatModel
+@{
+    ViewData["Title"] = "Select Seats";
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookingCinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/seat.css" asp-append-version="true" />
+    <link asp-append-version="true" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg_body">
+        <img src="~/images/tv-series-bg.jpg" alt="">
+    </div>
+    <div class="container">
+        <div class="section_seat">
+            <div class="heading mt-2">
+                HIU CINEMA
+            </div>
+            <form method="post" asp-page-handler="BookSeats" onsubmit="return validateForm()">
+                <input type="hidden" name="showtimeId" value="@Model.Showtime.ShowtimeId" />
+                <td>
+                    <div class="door">
+                       
+                    </div>
+                </td>
+                <div class="seatStructure">
+                    <center>
+                        <table id="seatsBlock">
+                            <p id="notification">@Html.ValidationSummary(false, "", new { @class = "text-danger" })</p>
+                            <tr>
+                                <td style="width: 100%;" colspan="20">
+                                    <div class="screen">SCREEN</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="column_name"></td>
+                                @{
+                                    var sortedGroups = Model.Showtime.Theater.Seats.GroupBy(s => s.NColumn).Where(g => g.Key >= 1).OrderBy(g => g.Key);
+                                    var maxColumn = sortedGroups.Max(g => g.Key);
+                                    foreach (var columnGroup in sortedGroups)
+                                    {
+                                        <td class="column_name">@(columnGroup.Key)</td>
+                                    }
+
+                                }
+                            </tr>
+
+                            @foreach (var row in Model.Showtime.Theater.Seats.GroupBy(s => s.NRow))
+                            {
+                                <tr>
+                                    <td class="column_name">@row.Key</td>
+                                    @foreach (var seat in row)
+                                    {
+                                        <td class="@(seat.IsBooked ? "redSeat" : "")">
+                                            @if (!seat.IsBooked)
+                                            {
+                                                <input type="checkbox" class="seats" name="seatIds[]" value="@seat.SeatId">
+                                            }
+                                            else
+                                            {
+                                                <ion-icon class="red" name="square-outline"></ion-icon>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </table>
+                        <div class="seat_detail  mt-3">
+                            <div class="smallBox greenBox">Ghế đang chọn</div> <br />
+                            <div class="smallBox redBox">Ghế có người đặt</div><br />
+                            <div class="smallBox emptyBox">Ghế trống</div><br />
+                        </div>
+                        <div class="btn mt-2">
+                            <button type="submit" class="button">
+                                <span class="button_lg">
+                                    <span class="button_sl"></span>
+                                    <span class="button_text">Book Selected Seats</span>
+                                </span>
+                            </button>
+                        
+                        </div>
+                        <div class="btn mt-2" >
+                            <a style="width:60%; white-space:nowrap;" class="btn btn-primary" asp-page="/index"> Quay Về Trang Chủ </a>
+
+                        </div>
+                 
+                    </center>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function validateForm() {
+            var checkboxes = document.querySelectorAll('.seats:checked');
+            if (checkboxes.length === 0) {
+                alert('Bạn chưa chọn ghế!');
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/seat.js" asp-append-version="true"></script>
+    <script asp-append-version="true" type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script asp-append-version="true" nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

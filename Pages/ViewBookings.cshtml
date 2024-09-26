@@ -1,0 +1,56 @@
+﻿@page
+@model BookingCinema.Pages.ViewBookingsModel
+
+<div class="container">
+
+    <form action="/Checkout?totalPrice=@Model.SeatBookings.Sum(item => item.Seat.Price)&totalSeats=@Model.SeatBookings.Count()&movieTitle=@Model.SeatBookings.FirstOrDefault()?.Showtime.Movie.Title" method="POST">
+
+
+        <div class="table-responsive">
+            <table style="margin-top: 100px; background-color: white;" class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th>Phim</th>
+                        <th>Giờ chiếu</th>
+                        <th>Hàng</th>
+                        <th>Cột</th>
+                        <th>Giá</th>
+                        <th>Ngày đặt</th>
+                        <th>Hủy Vé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.SeatBookings)
+                    {
+                        <tr>
+                            <td>@item.Showtime.Movie.Title</td>
+                            <td>@item.Showtime.ShowDateTime.ToString("HH:mm")</td>
+                            <td>@item.Showtime.Theater.Seats.First(s => s.SeatId == item.SeatId).NRow</td>
+                            <td>@item.Showtime.Theater.Seats.First(s => s.SeatId == item.SeatId).NColumn</td>
+                            <td>@string.Format("{0:#,##0} VNĐ", item.Seat.Price)</td>
+                            <td>@item.BookingDate.ToString("HH:mm dd/MM/yyyy")</td>
+                            <td>
+                                <form method="post" asp-page-handler="CancelBooking" asp-route-bookingId="@item.BookingId">
+                                    <button type="submit" class="btn btn-danger">Hủy vé</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        
+                        <th colspan="4">Tổng giá:</th>
+                        <td colspan="4">@String.Format("{0:0,0} VNĐ", Model.SeatBookings.Sum(item => item.Seat.Price))</td>
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div class="form-group">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-5">Check Out</button>
+    </form>
+</div>

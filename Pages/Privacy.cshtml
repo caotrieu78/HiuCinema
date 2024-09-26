@@ -1,0 +1,66 @@
+﻿@page
+@model BookingCinema.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Chi tiết phim";
+}
+
+<style>
+    .mau {
+        background-color: antiquewhite;
+    }
+
+    .mautext {
+        color: white;
+    }
+</style>
+
+<section class="movie-detail">
+    <div class="container">
+        <figure class="movie-detail-banner">
+            <img src="/images/@Model.Movie.Img" alt="The Northman movie poster">
+        </figure>
+
+        <div class="movie-detail-content">
+            <h1 class="h1 detail-title">@Model.Movie.Title</h1>
+
+            <div class="meta-wrapper">
+                <div class="badge-wrapper">
+                    <div class="badge badge-fill">@Model.Movie.Age</div>
+                    <div class="badge badge-outline">HD</div>
+                </div>
+
+                <div class="ganre-wrapper">
+                    <a href="#">@Model.Movie.Genre</a>
+                </div>
+
+                <div class="date-time">
+                    <div>
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <time datetime="2024">@Model.Movie.ReleaseDate</time>
+                    </div>
+                    <div>
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="PT115M">@Model.Movie.Duration min</time>
+                    </div>
+                </div>
+            </div>
+
+            <p class="storyline">@Model.Movie.Description</p>
+
+            <div class="details-actions">
+                <button class="share">
+                    <ion-icon name="share-social"></ion-icon>
+                    <span>Share</span>
+                </button>
+
+                <form method="post">
+                    <button type="submit" class="btn btn-primary">
+                        <ion-icon name="play"></ion-icon>
+                        <span>Đặt vé</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

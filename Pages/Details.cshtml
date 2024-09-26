@@ -1,0 +1,114 @@
+﻿@page
+@model BookingCinema.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Chi tiết phim";
+}
+
+<style>
+    .mau {
+        background-color: antiquewhite;
+    }
+
+    .mautext {
+        color: white;
+    }
+</style>
+
+<section class="movie-detail">
+    <div class="container">
+        <figure class="movie-detail-banner">
+            <img src="~/images/@Model.Movie.Img" alt="The Northman movie poster">
+        </figure>
+
+        <div class="movie-detail-content">
+            <h1 class="h1 detail-title">@Model.Movie.Title</h1>
+
+            <div class="meta-wrapper">
+                <div class="badge-wrapper">
+                    <div class="badge badge-fill">@Model.Movie.Age</div>
+                    <div class="badge badge-outline">HD</div>
+                </div>
+
+                <div class="ganre-wrapper">
+                    <a href="#">@Model.Movie.Genre</a>
+                </div>
+
+                <div class="date-time">
+                    <div>
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <time datetime="2024">@Model.Movie.ReleaseDate</time>
+                    </div>
+                    <div>
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="PT115M">@Model.Movie.Duration min</time>
+                    </div>
+                </div>
+            </div>
+            <p class="storyline">@Model.Movie.Description</p>
+
+            <div class="details-actions">
+                <button class="share">
+                    <ion-icon name="share-social"></ion-icon>
+                    <span>Share</span>
+                </button>
+                <form method="post" asp-page="/Shared/SelectSeat" asp-route-id="@Model.Movie.MovieId">
+                    <button type="submit" class="btn btn-primary">
+                        <ion-icon name="play"></ion-icon>
+                        <span>Đặt vé</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Model.Movie.Ratings.Any())
+{
+    <div class="container mt-5 ">
+        <h2 class="text-center mautext">Đánh giá</h2>
+        <ul class="list-group mt-3">
+            @foreach (var rating in Model.Movie.Ratings)
+            {
+                <li class="list-group-item mb-3 review-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Người đánh giá:</strong> @rating.User?.Username<br />
+                            <strong>Điểm:</strong> @rating.RatingValue<br />
+                            <strong>Bình luận:</strong> @rating.Comment<br />
+                            <strong>Ngày đánh giá:</strong> @rating.RatingDate
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <p class="text-center mt-5">Chưa có đánh giá nào cho phim này.</p>
+}
+
+<!-- Biểu mẫu để thêm đánh giá mới -->
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container mt-5">
+        <h2 class="text-center mautext">Thêm đánh giá</h2>
+        <form class="mt-3" method="post">
+            <input type="hidden" name="movieId" value="@Model.Movie.MovieId" />
+            <div class="form-group">
+                <label class="mautext" for="ratingValue">Đánh giá:</label>
+                <input type="number" class="form-control" id="ratingValue" name="ratingValue" min="1" max="5" required />
+            </div>
+            <div class="form-group">
+                <label class="mautext mt-3" for="comment">Bình luận:</label>
+                <textarea class="form-control" id="comment" name="comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mautext mt-3">Gửi đánh giá</button>
+        </form>
+    </div>
+}
+else
+{
+    <a asp-page="/Login">  <h4 style="color:azure;" class="text-center mt-5">Vui lòng đăng nhập để thêm đánh giá cho phim này.</h4> </a>
+  
+}

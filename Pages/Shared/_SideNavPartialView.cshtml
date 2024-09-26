@@ -1,0 +1,52 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="side-nav ">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu scrollable">
+            <li class="nav-item ">
+                <a class="dropdown-toggle"   asp-controller="Home" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-dashboard"></i>
+                    </span>
+                    <span class="title ">Dashboard</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+               
+            </li>
+            
+           
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-hdd"></i>
+                    </span>
+                    <span class="title" <a asp-controller="Home" asp-action="Index">System Manager </a></span> 
+                    <p class="arrow" style="top:12px">
+                        <i class="arrow-icon"></i>
+                    </p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                     
+                        <a   asp-controller="Movies" asp-action="Index">Movie Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Users" asp-action="Index">User Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Seats" asp-action="Index">Seat Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="SeatBookings" asp-action="Index">Ticket Manager</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a asp-page="/Logout"  class="nav-link">Logout</a></li>
+         
+        </ul>
+    </div>
+</div>

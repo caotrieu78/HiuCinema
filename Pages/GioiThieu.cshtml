@@ -1,0 +1,113 @@
+﻿@page
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Example</title>
+    <link rel="stylesheet" href="~/css/intro.css" asp-append-version="true" />
+    <link asp-append-version="true" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="slider" class="slider"
+
+    
+  
+         style="--img-prev:url(https://lh3.googleusercontent.com/aC9nyW5dhaYFmWD8fcf8DApjpH08eHEkbCHqmUPHRQ5T3jK-QyNKZYVMehmrvyPdEA_KxWvgZ3_kyOOYOAv99Ow3UoKSvEloleVKGSfLOwOyDV3Q6Dwi1G-NYoa9-t_ofmmskE6BYnVIOnIz2HWlMcijzIEwvKAL_R4z63DaLgG0z_OcGiSQHunwGAPXrBQUv42ZXuIMODq4zxDHczSxJ72b0-_udtdQK3JuT2X8nXCwFoF7GxmOpzXS0H5f50DuCbXoXcx-O7bgBMCXZdMpTxB27-wdXeLmxpYUySXgjSN2NAKmK16DmGLYvw5tMlrqwb8h4MJEEbXjP1pjPxXsahb7UZseEGyn80uLjATANJvusyJWCtzkkxYXPz-yI1rDvfEJKe2eyA-5AvFlzFBSwBMASn8f7mXinUrXMMREkJQjoi89NfZ91G7253OEVQOqcWxddiYtcHCO5v6Pl3QfV2SUTWXgggscDSY2ezjSPpYERNTXnIM_aCyWmIG7ybrfqOB0eVYBAgynyuPVbjd4KuZWZq2Dfu33HX1RuPKglbOuZGD1QbpJnruvUVkAmjDXI40ENN7X=w1600-h766);">
+        <div class="slider__content" id="slider-content">
+            <div class="slider__images">
+                <div class="slider__images-item slider__images-item--active" data-id="1">
+                    <img src="~/images/anh1.webp">
+                </div>
+                <div class="slider__images-item" data-id="2">
+                    <img src="~/images/anh2.jpg">
+                </div>
+                <div class="slider__images-item" data-id="3">
+                    <img src="~/images/anh3.jpg">
+                </div>
+                <div class="slider__images-item" data-id="4">
+                    <img src="~/images/anh4.jpg">
+                </div>
+                <div class="slider__images-item" data-id="5">
+                    <img src="~/images/anh5.jpg">
+                </div>
+            </div>
+            <div class="slider__text">
+                <div class="slider__text-item slider__text-item--active" data-id="1">
+                    <div class="slider__text-item-head">
+                        <h3>Hiu Cinema</h3>
+                    </div>
+                    <div class="slider__text-item-info">
+                        <p>
+                            “Rạp chiếu phim mang lại trải nghiệm chất lượng cao với hình ảnh sắc nét và âm thanh sống
+                            động.”
+                        </p>
+                    </div>
+                </div>
+                <div class="slider__text-item" data-id="2">
+                    <div class="slider__text-item-head">
+                        <h3>Sự Kiện Cộng Đồng</h3>
+                    </div>
+                    <div class="slider__text-item-info">
+                        <p>
+                            “Rạp chiếu phim là điểm hẹn của cộng đồng, nơi mọi người cùng chia sẻ niềm đam mê với điện
+                            ảnh.”
+                        </p>
+                    </div>
+                </div>
+                <div class="slider__text-item" data-id="3">
+                    <div class="slider__text-item-head">
+                        <h3>Sự Đa Dạng Nội Dung</h3>
+                    </div>
+                    <div class="slider__text-item-info">
+                        <p>
+                            “Đa dạng các thể loại phim từ hành động, hài hước đến tâm lý, đảm bảo có phim phù hợp với mọi
+                            đối tượng.”
+                        </p>
+                    </div>
+                </div>
+                <div class="slider__text-item" data-id="4">
+                    <div class="slider__text-item-head">
+                        <h3>Sự Tiện Lợi và Thú Vị</h3>
+                    </div>
+                    <div class="slider__text-item-info">
+                        <p>“Việc đặt vé trực tuyến và thức ăn dễ dàng, cùng không gian sang trọng và thoải mái.”</p>
+                    </div>
+                </div>
+                <div class="slider__text-item" data-id="5">
+                    <div class="slider__text-item-head">
+                        <h3>Khám Phá Cảm Xúc</h3>
+                    </div>
+                    <div class="slider__text-item-info">
+                        <p>
+                            “Rạp chiếu phim là nơi khám phá và chia sẻ cảm xúc, từ niềm vui, nỗi buồn đến cảm giác kích
+                            thích và sợ hãi.”
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider__nav">
+            <div class="slider__nav-arrows">
+                <div id="left" class="slider__nav-arrow slider__nav-arrow--left to left"></div>
+                <div id="right" class="slider__nav-arrow slider__nav-arrow--right to right"></div>
+            </div>
+            <div id="slider-dots" class="slider__nav-dots">
+                <div class="slider__nav-dot slider__nav-dot--active" data-id="1"></div>
+                <div class="slider__nav-dot" data-id="2"></div>
+                <div class="slider__nav-dot" data-id="3"></div>
+                <div class="slider__nav-dot" data-id="4"></div>
+                <div class="slider__nav-dot" data-id="5"></div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/intro.js"></script>
+    <script src="./main.js"></script>
+
+</body>
+
+</html>

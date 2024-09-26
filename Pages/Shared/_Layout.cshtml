@@ -1,0 +1,343 @@
+﻿@{
+    var message = TempData["Message"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookingCinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link asp-append-version="true" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+
+        #logo {
+            color: #DC143C;
+            transition: color 0.3s ease;
+            text-decoration: none;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(220, 20, 60, 0.7); /* Điều chỉnh giá trị để phù hợp với yêu cầu của bạn */
+        }
+
+
+            #logo.black {
+                color: red;
+            }
+
+        .active {
+            color: red;
+        }
+
+       
+}
+    </style>
+</head>
+<body>
+    <div id="notification-container">
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-success" role="alert">
+                @Html.Raw(message)
+            </div>
+        }
+    </div>
+    <div class="progress-bar">
+        <div class="percent"></div>
+    </div>
+    <header class="header" data-header>
+        <div class="container">
+
+            <div class="overlay" data-overlay></div>
+
+            <a asp-page="/" class="logo" id="logo">
+                <h1>HIU cinema</h1>
+            </a>
+
+            <div class="header-actions">
+
+                <!-- <button class="search-btn">
+                  <ion-icon name="search-outline"></ion-icon>
+                </button> -->
+                <!-- <button class="btn btn-primary">Sign in</button> -->
+
+            </div>
+
+            <button class="menu-open-btn" data-menu-open-btn>
+                <ion-icon name="reorder-two"></ion-icon>
+            </button>
+
+            <nav class="navbar" data-navbar>
+
+                <div class="navbar-top">
+
+                    <a asp-page="/index" class="logo" style="color: red;">
+                        <h1>HIU cinema</h1>
+                    </a>
+
+                    <button class="menu-close-btn" data-menu-close-btn>
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+
+                </div>
+
+                <ul class="navbar-list">
+
+                    <li>
+                        <a asp-page="/index" class="navbar-link">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a asp-page="/GioiThieu" class="navbar-link">Giới Thiệu</a>
+                    </li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a class="navbar-link" asp-area="" asp-page="/Register">Đăng ký</a>
+                        </li>
+                        <li>
+                            <a class="navbar-link" asp-area="" asp-page="/Login">Đăng nhập</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a id="popupMenuToggle" class="navbar-link">Xin chào, @User.Identity.Name</a>
+                            <div id="popupMenu" class="popup-menu">
+                                <ul class="mt-1">
+                                    <li> <a asp-area="" asp-page="/ViewBookings">Vé Của Tôi</a></li>
+                                    <li><a asp-area="" asp-page="/Logout">Đăng Xuất</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    }
+
+                </ul>
+
+                <ul class="navbar-social-list">
+
+                    <li>
+                        <a href="#" class="navbar-social-link">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-social-link">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-social-link">
+                            <ion-icon name="logo-pinterest"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-social-link">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="navbar-social-link">
+                            <ion-icon name="logo-youtube"></ion-icon>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+    </header>
+    <main>
+        <article>
+            <!--
+              - #HERO
+            -->
+            @RenderBody()
+            <!--
+              - #SERVICE
+            -->
+            <section class="service">
+                <div class="container">
+                    <div class="service-content">
+                        <p class="service-subtitle">Dịch vụ</p>
+                        <h2 class="h2 service-title">Tận hưởng buổi xem tại Hội Trường Beethoven</h2>
+
+                        <ul class="service-list">
+
+                            <li>
+                                <div class="service-card">
+
+                                    <div class="card-icon">
+                                        <ion-icon name="tv"></ion-icon> 
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h3 class="h3 card-title">Màn hình cực lớn.</h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consecetur adipiscing elit, sed do eiusmod tempor.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="service-card">
+
+                                    <div class="card-icon">
+                                        <ion-icon name="videocam"></ion-icon>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <h3 class="h3 card-title">Máy chiếu sắc nét </h3>
+
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consecetur adipiscing elit, sed do eiusmod tempor.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+        </article>
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="footer-top">
+            <div class="container">
+
+                <div class="footer-brand-wrapper">
+
+                    <a asp-page="/index" class="logo" style="color: red;">
+                        <h1>HIU cinema</h1>
+                    </a>
+
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="quicklink-wrapper">
+
+                    <ul class="quicklink-list">
+
+                        <li>
+                            <a href="#" class="quicklink-link">Faq</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="quicklink-link">Help center</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="quicklink-link">Terms of use</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="quicklink-link">Privacy</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="social-list">
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-twitter"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-pinterest"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+
+                <p class="copyright">
+                    &copy; 2024 . All Rights Reserved
+                </p>
+
+                <img src="~/images/footer-bottom-img.png" alt="Online banking companies logo" class="footer-bottom-img">
+
+            </div>
+        </div>
+
+    </footer>
+    <button class="go-top-btn" id="goTopBtn" data-go-top>
+        <svg class="svgIcon" viewBox="0 0 384 512">
+            <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+            </path>
+        </svg>
+    </button>
+    <script>
+        window.addEventListener('scroll', function () {
+            var logo = document.getElementById('logo');
+            var scrollPosition = window.scrollY;
+
+            if (scrollPosition > 0) {
+                logo.classList.add('black');
+            } else {
+                logo.classList.remove('black');
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentPageUrl = window.location.pathname;
+
+            var navbarLinks = document.querySelectorAll('.navbar-link');
+            navbarLinks.forEach(function (link) {
+                if (link.getAttribute('href') === currentPageUrl) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/script.js" asp-append-version="true"></script>
+    <script asp-append-version="true" type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script asp-append-version="true" nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,134 @@
+﻿@page
+@model BookingCinema.Pages.IndexModel
+
+<section class="hero">
+    <video id="myVideo" plays-inline>
+        <source src="~/video/panda.mp4" type="video/mp4">
+    </video>
+    <img id="bannerImage" src="~/images/movie-banner.png" alt="Banner Phim">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+
+            <div class="meta-wrapper">
+
+                <div class="badge-wrapper">
+                    <div class="badge badge-fill">13+</div>
+
+                    <div class="badge badge-outline">HD</div>
+                </div>
+
+                <div class="ganre-wrapper">
+                    <a href="#">Hoạt hình</a>
+
+
+                </div>
+
+                <div class="date-time">
+
+                    <div>
+                        <ion-icon name="calendar-outline"></ion-icon>
+
+                        <time datetime="2024">2024</time>
+                    </div>
+
+                    <div>
+                        <ion-icon name="time-outline"></ion-icon>
+
+                        <time datetime="PT128M">128 min</time>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary" id="playPauseButton" onclick="playPause(); this.blur();">
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+<!--
+  - #UPCOMING
+-->
+
+<section class="upcoming">
+    <div class="container">
+
+        <div class="flex-wrapper">
+
+            <div class="title-wrapper">
+
+
+                <h2 class="h2 section-title">Phim đang chiếu</h2>
+            </div>
+
+            <ul class="filter-list">
+
+                <li>
+                    <button class="filter-btn">Tình cảm</button>
+                </li>
+
+                <li>
+                    <button class="filter-btn">Kinh dị</button>
+                </li>
+
+                <li>
+                    <button class="filter-btn">Hoạt hình</button>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <ul class="movies-list  has-scrollbar">
+
+            @foreach (var item in Model.Movies)
+            {
+                <li>
+                    <div class="movie-card">
+                        <a asp-area="" asp-page="/Details" asp-route-id=@item.MovieId>
+                            <figure class="card-banner">
+                                <img src="./images/@item.Img" alt="The Northman movie poster">
+                            </figure>
+                        </a>
+
+                        <div class="title-wrapper">
+                            <a href="./movie-details.html">
+                                <h3 class="card-title">@item.Title</h3>
+                            </a>
+
+                            <time datetime="2024">@item.ReleaseDate</time>
+                        </div>
+
+                        <div class="card-meta">
+                            <div class="badge badge-outline">HD</div>
+
+                            <div class="duration">
+                                <ion-icon name="time-outline"></ion-icon>
+
+                                <time datetime="PT137M">@item.Duration minute</time>
+                            </div>
+
+                            <!-- <div class="rating">
+                              <ion-icon name="star"></ion-icon>
+
+                              <data>8.5</data>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </li>
+            }
+        </ul>
+
+    </div>
+</section>

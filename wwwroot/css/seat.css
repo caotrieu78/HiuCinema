@@ -1,0 +1,367 @@
+﻿body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    
+}
+
+#Username {
+    border: none;
+    border-bottom: 1px solid;
+}
+
+
+.bg_body {
+    width: 100%;
+    height: 104vh;
+    position: fixed;
+    z-index: -1;
+}
+
+    .bg_body img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: fixed;
+        z-index: -1;
+    }
+.section_seat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.screen {
+    width: 100%;
+    height: 20px;
+    background: #e98d95;
+    color: #3a3737;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    line-height: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 15px 20px rgba(255, 255, 255, 0.5);
+    animation: fadeInDown 1s ease forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.heading {
+    line-height:1;
+    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #f59f9f, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 55px;
+    font-weight:600;
+    font-family: "Source Sans Pro", sans-serif;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+
+@keyframes reveal {
+    80% {
+        letter-spacing: 8px;
+    }
+
+    100% {
+        background-size: 300% 300%;
+    }
+}
+
+@keyframes glow {
+    40% {
+        text-shadow: 0 0 8px #fff;
+    }
+}
+.smallBox {
+    border: 1px solid #fff;
+    padding: 10px;
+    color: #cae0f5;
+    font-weight: 20px;
+}
+    .smallBox::before {
+        content: ".";
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin-right: 10px;
+    }
+
+
+.greenBox::before {
+    content: "";
+    background: Green;
+}
+
+.redBox::before {
+    content: "";
+    background: Red;
+}
+
+.emptyBox::before {
+    content :"";
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: #ccc;
+}
+.seat_detail{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    
+}
+.seats {
+    border: 3px solid red;
+    background-color: #ccc;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    color: red;
+}
+
+.section_seat table tr td {
+    padding: 0px 10px;
+}
+
+.column_name{
+    color:aliceblue;
+}
+.seatGap {
+    width: 40px;
+}
+
+.seatVGap {
+    height: 40px;
+}
+
+table {
+    text-align: center;
+}
+
+
+.Displaytable {
+    text-align: center;
+}
+
+    .Displaytable td, .Displaytable th {
+        border: 1px solid;
+        text-align: left;
+    }
+
+textarea {
+    border: none;
+    background: transparent;
+}
+
+
+.red {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: red;
+    color: red;
+    margin-right: -2px;
+}
+
+input[type=checkbox] {
+    width: 0px;
+    margin-right: 18px;
+}
+input[type=checkbox]:before {
+        content: "";
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color: #ccc;
+}
+
+input[type=checkbox]:checked:before {
+        background-color: Green;
+        font-size: 16px;
+}
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    color: #0f1923;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all .15s ease;
+}
+
+    .button::before,
+    .button::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: calc(50% - 5px);
+        border: 1px solid #7D8082;
+        transition: all .15s ease;
+    }
+
+    .button::before {
+        top: 0;
+        border-bottom-width: 0;
+    }
+
+    .button::after {
+        bottom: 0;
+        border-top-width: 0;
+    }
+
+    .button:active,
+    .button:focus {
+        outline: none;
+    }
+
+        .button:active::before,
+        .button:active::after {
+            right: 3px;
+            left: 3px;
+        }
+
+        .button:active::before {
+            top: 3px;
+        }
+
+        .button:active::after {
+            bottom: 3px;
+        }
+
+.button_lg {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #0f1923;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+    .button_lg::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 2px;
+        background-color: #0f1923;
+    }
+
+    .button_lg::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 4px;
+        height: 4px;
+        background-color: #0f1923;
+        transition: all .2s ease;
+    }
+
+.button_sl {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-image: linear-gradient(to bottom right, #ed96b0, #ff0008);
+    transform: skew(-15deg);
+    transition: all .2s ease;
+}
+
+.button_text {
+    position: relative;
+}
+
+.button:hover {
+    color: #0f1923;
+}
+
+    .button:hover .button_sl {
+        width: calc(100% + 15px);
+    }
+
+    .button:hover .button_lg::after {
+        background-color: #fff;
+    }
+
+.btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .section_seat table tr td {
+        padding: 0px 8px;
+    }
+    .seat_detail {
+    
+        gap: 5px;
+    }
+
+    @media screen and (max-width: 575px) {
+        .section_seat table tr td {
+            padding: 0px 0px;
+        }
+        .seat_detail {
+            flex-direction: column;
+            gap: 0px;
+        }
+    }
+}
+.section_seat {
+    position: relative;
+}
+
+    .section_seat .door {
+        top: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        padding: 20px 15px;
+        color: #ccc;
+        right: -20px;
+        position: absolute;
+        background-color: rgb(230, 76, 76);
+        clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+    }
+
+        .section_seat .door span {
+            margin-bottom: 5px;
+            margin-right: 10px;
+        }
